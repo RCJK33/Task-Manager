@@ -1,32 +1,33 @@
-function toggleImportant() {
-    var iconImportant = $('#i-important');
-    const iconIsImportant = "fa-solid icon-important";
-    const iconIsNoneImportant = "fa-regular";
+const iconIsImportant = "fa-solid icon-important";
+const iconIsNoneImportant = "fa-regular";
 
+function toggleImportant() {
     if (iconImportant.hasClass(iconIsNoneImportant)) {
         iconImportant.removeClass(iconIsNoneImportant);
         iconImportant.addClass(iconIsImportant);
+        isiconImportant = true;
     } else {
         iconImportant.removeClass(iconIsImportant);
         iconImportant.addClass(iconIsNoneImportant);
+        isiconImportant = false;
     }
 }
 
 function setColorSelect() {
     $('#color1').css({
-        'background-color': '#ffdaec'
+        'background-color': '#ee4035'
     });
     $('#color2').css({
-        'background-color': '#ceffc9'
+        'background-color': '#f37736'
     });
     $('#color3').css({
-        'background-color': '#efffba'
+        'background-color': '#fdf498'
     });
     $('#color4').css({
-        'background-color': '#c7f6f9'
+        'background-color': '#7bc043'
     });
     $('#color5').css({
-        'background-color': '#e0d3ff'
+        'background-color': '#0392cf'
     });
 }
 
@@ -38,20 +39,96 @@ function setColorSelectContent(set) {
     colorContent.css(color);
 }
 
-let radioSelect = $('input[name=opciones]');
+function formatBudget(budget) {
+    if (!budget) {
+        return 0.00;
+    }
+    return parseFloat(budget);
+}
+
+function saveTask() {
+    var title = titleInput.val();
+    var description = descriptionInput.val();
+    var budget = formatBudget(budgetInput.val());
+    var status = statusInput.val();
+    var date = dateInput.val();
+    var color = $('input[name=opciones]:checked').val();
+
+    //Validate inputs if not, push alert
+
+    let isValid = true;
+    if (!title || !description || !date) {
+        isValid = false;
+        $('.alert').slideDown();
+        setTimeout(() => $('.alert').slideToggle(),7000);
+        return   
+    }
+
+    var task = new Task(title,description,budget,status,date,color,isiconImportant);
+    if (isiconImportant === true) {
+        taskList.unshift(task);
+    } else {
+        taskList.push(task);
+    }
+    saveTasks(task);
+    displayTaskCards();
+    cleanInputs();
+}
+
+function cleanInputs() {
+    titleInput.val("");
+    descriptionInput.val("");
+    budgetInput.val("");
+    statusInput.val("");
+    $('input[name=opciones]:checked').prop('checked', false);
+    colorContent.css({'background':'white'});
+    
+    if (iconImportant.hasClass(iconIsImportant)) {
+        iconImportant.removeClass(iconIsImportant);
+        iconImportant.addClass(iconIsNoneImportant);
+        isiconImportant = false;
+
+    }
+    dateInput.ready(function() {
+        // Obtener la fecha y hora actual
+        var today = new Date();
+      
+        // Formatear la fecha y hora actual como una cadena para establecer el valor predeterminado del elemento datetime-local
+        var todayStr = today.toISOString().slice(0, 16);
+      
+        // Establecer el valor predeterminado del elemento datetime-local
+        dateInput.val(todayStr);
+      });
+}
+
+//Form elements
 let colorContent = $('.form-radio-content');
 
-function init() {
-    $('#i-important').click(toggleImportant);
+// Form inputs
+let titleInput = $('#input-Title');
+let descriptionInput = $('#input-Description');
+let budgetInput = $('#input-Budget');
+let statusInput = $('#input-Status');
+let dateInput = $('#input-Datetime');
+let colorRadioOptions = $('input[name=opciones]');
+let iconImportant =  $('#i-important');
+let isiconImportant = false;
 
-    radioSelect.on('click', function() {
+function init() {
+    iconImportant.click(toggleImportant);
+    setColorSelect();    
+
+    colorRadioOptions.on('click', function() {
         var valorSeleccionado = $(this).val();
         setColorSelectContent(valorSeleccionado);
       });
 
-    radioSelect.on('click',setColorSelectContent());
+    colorRadioOptions.on('click',setColorSelectContent);
+    $('#btn-save').on('click',saveTask);
 
-    setColorSelect();    
+    taskList = readTasks();
+    displayTaskCards();
+    cleanInputs();
 }
 
 window.onload = init;
