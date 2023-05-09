@@ -21,12 +21,9 @@ function setColorSelect() {
         'background-color': '#f37736'
     });
     $('#color3').css({
-        'background-color': '#fdf498'
-    });
-    $('#color4').css({
         'background-color': '#7bc043'
     });
-    $('#color5').css({
+    $('#color4').css({
         'background-color': '#0392cf'
     });
 }

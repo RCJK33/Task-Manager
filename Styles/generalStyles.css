@@ -3,12 +3,22 @@
 }
 
 body{
-    background-color: rgb(255, 255, 255);
-    display: flex;
+    display: block;
     flex-direction: column;
-    height: 100vh;
-    background-image: url(/resources/15364644_5603993.jpg);
+}
+
+.backim{
+    background-image: url('/resources/15364644_5603993.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
+    background-color: #664999;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+	z-index: -500;
+    filter: blur(2px);
 }
 
 header{

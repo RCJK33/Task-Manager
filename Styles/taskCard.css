@@ -9,9 +9,10 @@
     background-color: rgba(255, 255, 255, 0.363);
 
     padding: 15px 20px;
-    margin: 15px 0px;
+    margin: 15px auto;
     border-radius: 10px;
     max-height: fit-content;
+    max-width: 150vh;
 
     border: solid 2px;
     border-left: solid 10px;
