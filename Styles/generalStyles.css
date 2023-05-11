@@ -63,5 +63,21 @@ section{
 }
 
 #list{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
     flex-grow: 1;
+}
+
+.clickable-icon {
+    display: inline;
+    font-size: 28px;
+    cursor: pointer;
+    caret-color: transparent;
+}
+
+.icon-container{
+    background-color: transparent;
+    caret-color: transparent;
+    border: 0;
 }

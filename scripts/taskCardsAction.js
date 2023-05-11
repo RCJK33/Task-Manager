@@ -7,8 +7,12 @@ class Task {
         this.date = date;
         this.color = color;
         this.important = important;
+
+        this.name = "Rafael"
     }
 }
+
+let taskList;
 
 function removeTask(index) {
     taskList.splice(index,1);
@@ -24,7 +28,7 @@ function formatCardAtributes(task,index) {
         imo = iconIsNoneImportant;
     }
     var cardEstructure = `
-        <div class="taskcard" style="border-color: ${task.color};">
+        <div id="${task._id}" class="taskcard" style="border-color: ${task.color};">
            
             <div class="taskcard-level icon-container">
                 <i id="taskcard-importantIcon" class="clickable-icon fa-regular fa-heart ${imo}"></i>
@@ -35,8 +39,8 @@ function formatCardAtributes(task,index) {
             </div>  
             <div class="taskcard-title"><p>${task.title}</p></div>
             <div class="taskcard-description"><p>${task.description}</p></div>
-            <div class="taskcard-budget"><p style="color:${task.color};  font-weight: bold;">Budget</p><p>${formatBudget(task.budget)}</p></div>
-            <button class="taskcard-trash icon-container" onclick="removeTask(${index});">
+            <div class="taskcard-budget"><p style="color:${task.color};  font-weight: bold;">Budget</p><p>$${formatBudget(task.budget)}</p></div>
+            <button class="taskcard-trash icon-container" onclick="removeTaskToServer('${task._id}')">
                 <i class="clickable-icon fa-solid fa-trash" style="color:${task.color}"></i>
             </button>
         </div>
@@ -45,7 +49,7 @@ function formatCardAtributes(task,index) {
 }
 
 let taskSectionList = $('#list')
-function displayTaskCards() {
+function displayTaskCards(taskList) {
     var card = ``;  
     for (let i = 0; i < taskList.length; i++) {
         card += formatCardAtributes(taskList[i],i);
@@ -56,20 +60,14 @@ function displayTaskCards() {
 
 const KEY = 'tasks';
 
-function saveTasks() {  
-    let val = JSON.stringify(taskList);
-    localStorage.setItem(KEY,val);
-}
-
-function readTasks() {
-    let tasks = localStorage.getItem(KEY);
-    if (!tasks) {
+function readTasksJSON(json) {
+    if (!json) {
         // If you get here the LS is empty
         console.log("No taskss.");
         return []; // creating the array
     } else {
-        let objList = JSON.parse(tasks); // Parse back ther string to into array
+        console.log("No taskss.");
+        let objList = JSON.parse(json); // Parse back ther string to into array
         return objList;
     }
 }
-let taskList

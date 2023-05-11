@@ -62,13 +62,10 @@ function saveTask() {
     }
 
     var task = new Task(title,description,budget,status,date,color,isiconImportant);
-    if (isiconImportant === true) {
-        taskList.unshift(task);
-    } else {
-        taskList.push(task);
-    }
-    saveTasks(task);
-    displayTaskCards();
+
+    // Save task in to server
+    const response = saveToServer(task);
+    
     cleanInputs();
 }
 
@@ -78,7 +75,7 @@ function cleanInputs() {
     budgetInput.val("");
     statusInput.val("");
     $('input[name=opciones]:checked').prop('checked', false);
-    colorContent.css({'background':'white'});
+    colorContent.css({'background':'transparent'});
     
     if (iconImportant.hasClass(iconIsImportant)) {
         iconImportant.removeClass(iconIsImportant);
@@ -110,22 +107,3 @@ let dateInput = $('#input-Datetime');
 let colorRadioOptions = $('input[name=opciones]');
 let iconImportant =  $('#i-important');
 let isiconImportant = false;
-
-function init() {
-    iconImportant.click(toggleImportant);
-    setColorSelect();    
-
-    colorRadioOptions.on('click', function() {
-        var valorSeleccionado = $(this).val();
-        setColorSelectContent(valorSeleccionado);
-      });
-
-    colorRadioOptions.on('click',setColorSelectContent);
-    $('#btn-save').on('click',saveTask);
-
-    taskList = readTasks();
-    displayTaskCards();
-    cleanInputs();
-}
-
-window.onload = init;

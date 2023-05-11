@@ -6,16 +6,16 @@
     overflow: hidden;
 
     backdrop-filter: blur(62px);
-    background-color: rgba(255, 255, 255, 0.363);
+    background-color: rgba(255, 255, 255, 0.171);
 
     padding: 15px 20px;
-    margin: 15px auto;
+    margin: 8px 0;
     border-radius: 10px;
     max-height: fit-content;
-    max-width: 150vh;
+    width: 70%;
 
     border: solid 2px;
-    border-left: solid 10px;
+    border-left: solid 9px;
 }
 
 .taskcard div p{
@@ -35,8 +35,8 @@
 }
 
 .taskcard-title{
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 170px;
+    max-width: 170px;
     margin: 0 20px;
 }
 .taskcard-title p{
@@ -62,11 +62,6 @@
     align-content: center;
     justify-content: space-between;
     align-items: center;
-}
-
-.icon-container{
-    caret-color: transparent;
-    border: 0;
 }
 
 i{
