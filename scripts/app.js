@@ -12,11 +12,10 @@ async function saveToServer(task) {
     });
 
     if (await response.status === 200) {
-        console.log(await response.json())
-        loadServerTasks();
+        displayTaskCards(await response.json());
     } else {
         alert("Error: task was not seve.");        
-        console.log(await response.json())
+        // console.log(await response.json());
     }
 
     return response

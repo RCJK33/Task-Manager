@@ -20,7 +20,7 @@ function removeTask(index) {
     displayTaskCards()
 }
 
-function formatCardAtributes(task,index) {
+function formatCardAtributes(task) {
     var imo;
     if (task.important === true) {
         imo = iconIsImportant;
@@ -49,10 +49,17 @@ function formatCardAtributes(task,index) {
 }
 
 let taskSectionList = $('#list')
-function displayTaskCards(taskList) {
-    var card = ``;  
-    for (let i = 0; i < taskList.length; i++) {
-        card += formatCardAtributes(taskList[i],i);
+function displayTaskCards(tasks) {
+    var card = ``;
+
+    if (tasks.length === undefined){
+        card += formatCardAtributes(tasks);
+        taskSectionList.append($(card));
+        return
+    }
+
+    for (let i = 0; i < tasks.length; i++) {
+        card += formatCardAtributes(tasks[i],i);
 
     }
     taskSectionList.html(card);
