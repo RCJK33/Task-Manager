@@ -12,14 +12,6 @@ class Task {
     }
 }
 
-let taskList;
-
-function removeTask(index) {
-    taskList.splice(index, 1);
-    saveTasks();
-    displayTaskCards()
-}
-
 function formatCardAtributes(task) {
     var imo;
     if (task.important === true) {
@@ -55,12 +47,22 @@ function displayTaskCards(tasks) {
     if (tasks.length === undefined) {
         card = formatCardAtributes(tasks);
         taskSectionList.append($(card));
+
+        var taskDiv = $('#'+tasks._id+' button');
+        taskDiv.on('click',function (){
+            removeTaskToServer(''+tasks._id);
+        });
+
+        var taskCard = $('#'+tasks._id)
+        taskCard.slideUp(0);
+        taskCard.slideToggle();
         return
     }
 
     for (let i = 0; i < tasks.length; i++) {
         card = formatCardAtributes(tasks[i]);
         taskSectionList.append($(card));
+        
         var taskDiv = $('#'+tasks[i]._id+' button');
         taskDiv.on('click',function (){
             removeTaskToServer(''+tasks[i]._id);

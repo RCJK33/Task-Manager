@@ -74,7 +74,7 @@ function cleanInputs() {
     descriptionInput.val("");
     budgetInput.val("");
     statusInput.val("");
-    $('input[name=opciones]:checked').prop('checked', false);
+    $('input[name=opciones]#color5').prop('checked', true);
     colorContent.css({'background':'transparent'});
     
     if (iconImportant.hasClass(iconIsImportant)) {

@@ -44,10 +44,16 @@ async function removeTaskToServer(id) {
     let response = await fetch(`https://fsdiapi.azurewebsites.net/api/tasks/${id}/`,{
         method: "DELETE",
     });
+    var taskCard = $('#'+id);
 
     if (await response.ok) {
         console.log("Deleted");
-        $('#'+id).remove();
+        taskCard.animate({
+            opacity: 0,
+            height: 0
+        }, 400, function() {
+            $(this).remove();
+        });
     } else {
         alert("Error: Culd not delete the task.");        
         console.log(await response.json());

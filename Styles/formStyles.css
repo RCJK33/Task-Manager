@@ -76,6 +76,10 @@ form{
     caret-color: transparent;
 }
 
+.form-control{
+    border-radius: 10px;
+}
+
 input[type="radio"] {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -86,7 +90,6 @@ input[type="radio"] {
     height: 28px;
     border-radius: 50%;
     outline: none;
-    initial-value: black;
 }
 
 /* Estilo de los checkboxes cuando están seleccionados */
