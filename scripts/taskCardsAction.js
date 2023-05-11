@@ -15,7 +15,7 @@ class Task {
 let taskList;
 
 function removeTask(index) {
-    taskList.splice(index,1);
+    taskList.splice(index, 1);
     saveTasks();
     displayTaskCards()
 }
@@ -28,7 +28,7 @@ function formatCardAtributes(task) {
         imo = iconIsNoneImportant;
     }
     var cardEstructure = `
-        <div id="${task._id}" class="taskcard" style="border-color: ${task.color};">
+        <div id="${task._id}" class="taskcard" style="border-color: ${task.color};" title="${task.name}">
            
             <div class="taskcard-level icon-container">
                 <i id="taskcard-importantIcon" class="clickable-icon fa-regular fa-heart ${imo}"></i>
@@ -40,7 +40,7 @@ function formatCardAtributes(task) {
             <div class="taskcard-title"><p>${task.title}</p></div>
             <div class="taskcard-description"><p>${task.description}</p></div>
             <div class="taskcard-budget"><p style="color:${task.color};  font-weight: bold;">Budget</p><p>$${formatBudget(task.budget)}</p></div>
-            <button class="taskcard-trash icon-container" onclick="removeTaskToServer('${task._id}')">
+            <button class="taskcard-trash icon-container">
                 <i class="clickable-icon fa-solid fa-trash" style="color:${task.color}"></i>
             </button>
         </div>
@@ -52,29 +52,18 @@ let taskSectionList = $('#list')
 function displayTaskCards(tasks) {
     var card = ``;
 
-    if (tasks.length === undefined){
-        card += formatCardAtributes(tasks);
+    if (tasks.length === undefined) {
+        card = formatCardAtributes(tasks);
         taskSectionList.append($(card));
         return
     }
 
     for (let i = 0; i < tasks.length; i++) {
-        card += formatCardAtributes(tasks[i],i);
-
-    }
-    taskSectionList.html(card);
-}
-
-const KEY = 'tasks';
-
-function readTasksJSON(json) {
-    if (!json) {
-        // If you get here the LS is empty
-        console.log("No taskss.");
-        return []; // creating the array
-    } else {
-        console.log("No taskss.");
-        let objList = JSON.parse(json); // Parse back ther string to into array
-        return objList;
+        card = formatCardAtributes(tasks[i]);
+        taskSectionList.append($(card));
+        var taskDiv = $('#'+tasks[i]._id+' button');
+        taskDiv.on('click',function (){
+            removeTaskToServer(''+tasks[i]._id);
+        });
     }
 }
