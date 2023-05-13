@@ -38,17 +38,17 @@
     font-weight: bold;
 }
 
-.taskcard-title{
+.taskcard-title p{
     min-width: 170px;
     max-width: 170px;
-}
-.taskcard-title p{
     font-size: 20px;
+    overflow: hidden;
 }
 
 .taskcard-description{
     margin-left: 10px;
     flex-grow: 1;
+    overflow: hidden;
 }
 
 .taskcard-budget{
