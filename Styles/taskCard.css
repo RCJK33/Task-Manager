@@ -3,7 +3,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    overflow: hidden;
+    /* overflow: hidden; */
 
     backdrop-filter: blur(62px);
     background-color: rgba(255, 255, 255, 0.171);
@@ -71,4 +71,47 @@ i{
 
 .fa-trash{
     color: red;
+}
+
+.taskcard-owner{
+    display: none;
+    position: fixed;
+    right: -60px;
+}
+
+.taskcard:hover .taskcard-owner{
+    display: block;
+}
+
+@media (max-width: 1350px) {
+    .taskcard{
+        width: 100%;
+        transition: width .5s ease-in-out;
+    }
+}
+
+@media (max-width: 790px) {
+    .taskcard-title{
+        max-width: fit-content;
+        min-width: fit-content;
+    }
+    .taskcard{
+        flex-direction: column;
+        align-items: start;
+    }
+    .taskcard-level{
+        margin: 0 20px;
+        width: 100%;
+    }
+    .taskcard-trash{
+        display: flex;
+        justify-content: center;
+        margin-right: 30px;
+        width: 100%;
+    }
+
+    .taskcard:hover .taskcard-owner{
+        display: block;
+        right: 30px;
+    }    
 }

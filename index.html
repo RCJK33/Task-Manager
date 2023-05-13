@@ -20,22 +20,20 @@
 
     <img class="backim" onmousedown="return false;" onselectstart="return false;">
 
-    <header>
-        <h1>Welcome to my super Awesemo Task Manager</h1>
-    </header>
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand">TaskManager</a>
-            <button class="btn btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#formTask"
-                aria-expanded="false" aria-controls="formTask">
+            <button class="btn btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target="#formTask" aria-expanded="false" aria-controls="formTask">
                 Add Task
             </button>
         </div>
     </nav>
+
+
     <main>
         <section id="list">
-
         </section>
+        <div id="formTask" class="collapse collapse-vertical collapse-form-btn" type="button" data-bs-toggle="collapse" data-bs-target="#formTask" aria-expanded="false" aria-controls="formTask"></div>
         <section class="form collapse collapse-vertical" id="formTask">
             <form>
                 <div class="form-alert">

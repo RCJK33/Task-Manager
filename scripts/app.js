@@ -50,7 +50,8 @@ async function removeTaskToServer(id) {
         console.log("Deleted");
         taskCard.animate({
             opacity: 0,
-            height: 0
+            height: 0,
+            width: 0
         }, 400, function() {
             $(this).remove();
         });
