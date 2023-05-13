@@ -7,6 +7,7 @@
 
     backdrop-filter: blur(62px);
     background-color: rgba(255, 255, 255, 0.171);
+    caret-color: transparent;
 
     padding: 15px 20px;
     margin: 8px 0;
@@ -23,11 +24,14 @@
 }
 
 .taskcard-element{
+    margin: 0 10px;
+}
+
+.taskcard-container{
     display: flex;
     flex-direction: column;
     min-width: 130px;
     max-width: 130px;
-    margin: 0 20px;
 }
 
 .taskcard-status p{
@@ -37,19 +41,17 @@
 .taskcard-title{
     min-width: 170px;
     max-width: 170px;
-    margin: 0 20px;
 }
 .taskcard-title p{
     font-size: 20px;
 }
 
 .taskcard-description{
+    margin-left: 10px;
     flex-grow: 1;
-    margin: 0 20px;
 }
 
 .taskcard-budget{
-    margin: 0 30px;
     min-width: fit-content;
     max-width: fit-content;
 }
@@ -86,11 +88,20 @@ i{
 @media (max-width: 1350px) {
     .taskcard{
         width: 100%;
-        transition: width .5s ease-in-out;
+        transition: all .5s ease-in-out;
+    }
+
+    .taskcard:hover .taskcard-owner{
+        display: none;
     }
 }
 
 @media (max-width: 790px) {
+    #list{
+        transition: all .5s ease-in-out;
+        padding: 10px;
+    }
+
     .taskcard-title{
         max-width: fit-content;
         min-width: fit-content;
@@ -98,6 +109,7 @@ i{
     .taskcard{
         flex-direction: column;
         align-items: start;
+        padding: 15px 60px;
     }
     .taskcard-level{
         margin: 0 20px;

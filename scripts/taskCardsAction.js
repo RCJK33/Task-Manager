@@ -21,20 +21,20 @@ function formatCardAtributes(task) {
     }
     var cardEstructure = `
         <div id="${task._id}" class="taskcard" style="border-color: ${task.color};" title="${task.name}">
-            <div class="taskcard-owner">
-                <p style="color:${task.color};  font-weight: bold;">${task.name}</p>
-            </div>
-            <div class="taskcard-level icon-container">
+            <div class="taskcard-element taskcard-level icon-container">
                 <i id="taskcard-importantIcon" class="clickable-icon fa-regular fa-heart ${imo}"></i>
+                <div class="taskcard-owner">
+                    <p style="color:${task.color};  font-weight: bold;">${task.name}</p>
+                </div>
             </div>
-            <div class="taskcard-element">
-                <div class="taskcard-status"><p style="color:${task.color};">${task.status}</p></div>
-                <div class="taskcard-date"><p>${task.date}</p></div>
+            <div class="taskcard-container">
+                <div class="taskcard-element taskcard-status"><p style="color:${task.color};">${task.status}</p></div>
+                <div class="taskcard-element taskcard-date"><p>${task.date}</p></div>
             </div>  
-            <div class="taskcard-title"><p>${task.title}</p></div>
-            <div class="taskcard-description"><p>${task.description}</p></div>
-            <div class="taskcard-budget"><p style="color:${task.color};  font-weight: bold;">Budget</p><p>$${formatBudget(task.budget)}</p></div>
-            <div class="taskcard-trash">
+            <div class="taskcard-element taskcard-title"><p style="color:${task.color};  font-weight: bold;">${task.title}</p></div>
+            <div class="taskcard-element taskcard-description"><p>${task.description}</p></div>
+            <div class="taskcard-element taskcard-budget"><p style="color:${task.color};  font-weight: bold;">Budget</p><p>$${formatBudget(task.budget)}</p></div>
+            <div class="taskcard-element taskcard-trash">
                 <button class="icon-container">
                     <i class="clickable-icon fa-solid fa-trash" style="color:${task.color}"></i>
                 </button>

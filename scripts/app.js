@@ -32,7 +32,6 @@ async function loadServerTasks() {
     });
     
     if (await response.status === 200) {
-        // console.log(await response.json());
         var task = await response.json();
         displayTaskCards(task);
     } else {
@@ -66,8 +65,6 @@ async function removeTaskToServer(id) {
     return response
 }
 
-
-$('.alert').hide()
 function init() {
     iconImportant.click(toggleImportant);
     setColorSelect();    
@@ -84,4 +81,5 @@ function init() {
     cleanInputs();
 }
 
+$('.alert').hide()
 window.onload = init;
