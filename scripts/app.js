@@ -13,9 +13,11 @@ async function saveToServer(task) {
 
     if (await response.status === 200) {
         displayTaskCards(await response.json());
+        $('.alert-added').fadeIn();
+        setTimeout(() => $('.alert-added').fadeToggle(),7000);
     } else {
-        alert("Error: task was not seve.");        
-        // console.log(await response.json());
+        $('.alert-added-err').fadeIn();
+        setTimeout(() => $('.alert-added-err').fadeToggle(),7000);
     }
 
     return response
@@ -34,8 +36,8 @@ async function loadServerTasks() {
         var task = await response.json();
         displayTaskCards(task);
     } else {
-        alert("Error: task was not seve.");        
-        console.log(await response.json())
+        $('.alert-connect-err').fadeIn();
+        setTimeout(() => $('.alert-connect-err').fadeToggle(),9000);
     }
     
 }
@@ -47,7 +49,6 @@ async function removeTaskToServer(id) {
     var taskCard = $('#'+id);
 
     if (await response.ok) {
-        console.log("Deleted");
         taskCard.animate({
             opacity: 0,
             height: 0,
@@ -55,14 +56,18 @@ async function removeTaskToServer(id) {
         }, 400, function() {
             $(this).remove();
         });
+        $('.alert-delete').fadeIn();
+        setTimeout(() => $('.alert-delete').fadeToggle(),7000);
     } else {
-        alert("Error: Culd not delete the task.");        
-        console.log(await response.json());
+        $('.alert-delete-err').fadeIn();
+        setTimeout(() => $('.alert-delete-err').fadeToggle(),7000);
     }
 
     return response
 }
 
+
+$('.alert').hide()
 function init() {
     iconImportant.click(toggleImportant);
     setColorSelect();    

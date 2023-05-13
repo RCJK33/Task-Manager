@@ -56,8 +56,8 @@ function saveTask() {
     let isValid = true;
     if (!title || !description || !date) {
         isValid = false;
-        $('.alert').slideDown();
-        setTimeout(() => $('.alert').slideToggle(),7000);
+        $('.alert-form').slideDown();
+        setTimeout(() => $('.alert-form').slideToggle(),7000);
         return   
     }
 

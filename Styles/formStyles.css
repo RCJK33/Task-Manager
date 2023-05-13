@@ -22,10 +22,6 @@ form{
     height: fit-content;
 }
 
-.alert{
-    display: none;
-}
-
 .form-btns {
     display: flex;
     justify-items: center;

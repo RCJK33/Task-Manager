@@ -54,6 +54,30 @@ section{
     flex-grow: 1;
 }
 
+.alert{
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    min-width: 240px;
+
+    caret-color: transparent;
+    border-radius: 10px;
+}
+
+.alert p{
+    margin: 0 10px;
+    flex-grow: 1;
+}
+
+.alerts-section{
+    flex-direction: column;
+    position: fixed;
+    padding: 0;
+    bottom: 2vh;
+    left: 2vh;
+}
+
 .clickable-icon {
     display: inline;
     font-size: 28px;
