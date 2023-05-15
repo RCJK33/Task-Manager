@@ -12,7 +12,8 @@ async function saveToServer(task) {
     });
 
     if (await response.status === 200) {
-        displayTaskCards(await response.json());
+        var r = await response.json();
+        displayTaskCards(r);
         $('.alert-added').fadeIn();
         setTimeout(() => $('.alert-added').fadeToggle(),7000);
     } else {
